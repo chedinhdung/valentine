@@ -1,0 +1,129 @@
+body{
+    margin:0;
+    background:#000;
+    font-family:Arial, sans-serif;
+}
+
+#letterSection{
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 1s ease;
+}
+
+#letterSection.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.scene{
+    perspective:1200px;
+}
+
+.envelope-container{
+    transform-style:preserve-3d;
+    animation:spin3D 8s linear infinite;
+}
+
+@keyframes spin3D{
+    from{ transform:rotateY(0deg); }
+    to{ transform:rotateY(360deg); }
+}
+
+.envelope{
+    position:relative;
+    width:300px;
+    aspect-ratio:400 / 260;
+    background:#f5b9c6;
+    border-radius:12px;
+    transform-style:preserve-3d;
+    transition:opacity 1s ease;
+}
+
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:50%;
+    background:#e58ca6;
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    transition:0.8s;
+    transform-origin:top;
+    z-index:4;
+}
+
+.left{
+    position:absolute;
+    width:50%;
+    height:100%;
+    background:#f2a9ba;
+    clip-path:polygon(0 0, 100% 50%, 0 100%);
+    z-index:2;
+}
+
+.right{
+    position:absolute;
+    right:0;
+    width:50%;
+    height:100%;
+    background:#f2a9ba;
+    clip-path:polygon(100% 0, 0 50%, 100% 100%);
+    z-index:2;
+}
+
+.bottom{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:50%;
+    background:#f0aebe;
+    clip-path:polygon(0 100%, 50% 0, 100% 100%);
+    z-index:1;
+}
+
+.letter{
+    position:absolute;
+    width:85%;
+    height:75%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) translateY(40px) scale(0.9);
+    opacity:0;
+    transition:0.8s ease;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.4);
+    overflow:auto;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+    transform:translate(-50%, -120%) scale(1);
+    opacity:1;
+    z-index:10;
+}
+
+.envelope.fade-out{
+    opacity:0;
+}
+
+button{
+    padding:10px 30px;
+    border:none;
+    border-radius:30px;
+    background:#e58ca6;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+}

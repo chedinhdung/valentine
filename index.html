@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nano Love Letter</title>
+
+<link rel="stylesheet" href="thu.css">
+
+<style>
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:black;
+}
+
+canvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+}
+
+#letterSection{
+    position:fixed;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:24px;
+    z-index:10;
+}
+
+#letterSection.active{
+    display:flex;
+}
+
+#toggleBtn{
+    z-index:11;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div id="letterSection">
+
+    <div class="scene">
+        <div class="envelope-container" id="orbit">
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="bottom"></div>
+
+                <div class="letter">
+                    <div id="text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="toggleBtn">Open</button>
+
+</div>
+
+<script src="nanoeffect.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
